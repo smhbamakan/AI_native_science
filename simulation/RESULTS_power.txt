@@ -1,0 +1,11 @@
+Fisher power, 0.067 vs 0.2: 0.29
+Fisher power, 0.067 vs 0.25: 0.48
+Fisher power, 0.067 vs 0.3: 0.66
+Fisher power, 0.067 vs 0.35: 0.80
+Fisher power, 0.067 vs 0.4: 0.90
+signed-rank power two-sided dz=0.3: 0.35
+signed-rank power two-sided dz=0.4: 0.54
+signed-rank power two-sided dz=0.5: 0.74
+signed-rank power two-sided dz=0.55: 0.82
+signed-rank power two-sided dz=0.6: 0.87
+SD paired diff H1 final regret 0.141 H2a early 0.183

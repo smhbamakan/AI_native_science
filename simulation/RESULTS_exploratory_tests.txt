@@ -1,0 +1,15 @@
+EXPLORATORY contrasts (uncorrected; not pre-registered)
+KDP(NA2) vs DOC final regret, stationary: 0.029 vs 0.234, Mann-Whitney one-sided p=2.40e-05
+KDP(NA2) vs DOC epistemic error, stationary: 0.057 vs 0.263, Mann-Whitney one-sided p=1.51e-11
+ADA vs DOC final regret, stationary: 0.108 vs 0.234, Mann-Whitney one-sided p=3.16e-02
+NA2 vs NA2-legacy-init-only (anchoring), stationary: 0.029 vs 0.170, Mann-Whitney one-sided p=1.08e-03
+ADA vs NA2-legacy-init-only (absorption given anchored start): 0.108 vs 0.170, Mann-Whitney one-sided p=2.19e-01
+ADA attractor-only (random init) vs ADA: 0.072 vs 0.108, Mann-Whitney one-sided p=1.45e-01
+theta=1 vs theta=2 (ADA): 0.061 vs 0.108, Mann-Whitney one-sided p=2.22e-01
+NA2 ring vs global (balanced), stationary: 0.000 vs 0.029, Mann-Whitney one-sided p=4.08e-02
+Shift: NA2 trigger+tau_mem25 vs NA2: 0.338 vs 0.510, Mann-Whitney one-sided p=4.23e-04
+Shift: ADA trigger+tau_mem25 vs ADA: 0.336 vs 0.447, Mann-Whitney one-sided p=1.51e-02
+Shift: NA2 trigger only vs NA2: 0.412 vs 0.510, Mann-Whitney one-sided p=8.11e-02
+Shift: NA2 tau_mem25 only vs NA2: 0.515 vs 0.510, Mann-Whitney one-sided p=6.02e-01
+Shift false canonisation NA2 trigger+tau vs NA2: 17 vs 29 /30, Fisher p=0.000
+Stationary cost: NA2 trigger+tau vs NA2: 0.045 vs 0.029, Mann-Whitney one-sided p=3.41e-01

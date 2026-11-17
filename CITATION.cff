@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the accompanying manuscript."
+title: "AI_native_science: code for 'From documents to epistemic transactions: a computable layer for AI-native science'"
+authors:
+  - family-names: "Hosseini Bamakan"
+    given-names: "Seyed Mojtaba"
+    orcid: "https://orcid.org/0000-0001-5862-2222"
+repository-code: "https://github.com/smhbamakan/AI_native_science"
+date-released: "2026-11-17"

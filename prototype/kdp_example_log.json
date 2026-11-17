@@ -1,0 +1,118 @@
+[
+ {
+  "id": "d1",
+  "op": "assert",
+  "claim": "H17",
+  "scope": "C",
+  "agent": "lab_A",
+  "t": 1,
+  "evidence": {
+   "uri": "doi:example/1",
+   "quality": 0.8,
+   "cluster": "D1"
+  },
+  "target": null,
+  "sig": "placeholder"
+ },
+ {
+  "id": "d2",
+  "op": "support",
+  "claim": "H17",
+  "scope": "C",
+  "agent": "lab_B",
+  "t": 2,
+  "evidence": {
+   "uri": "doi:example/2",
+   "quality": 0.7,
+   "cluster": "D2"
+  },
+  "target": null,
+  "sig": "placeholder"
+ },
+ {
+  "id": "d3",
+  "op": "weaken",
+  "claim": "H17",
+  "scope": "notC",
+  "agent": "lab_C",
+  "t": 3,
+  "evidence": {
+   "uri": "doi:example/3",
+   "quality": 0.8,
+   "cluster": "D3"
+  },
+  "target": null,
+  "sig": "placeholder"
+ },
+ {
+  "id": "d4",
+  "op": "qualify",
+  "claim": "H17",
+  "scope": "C",
+  "agent": "lab_D",
+  "t": 4,
+  "evidence": {
+   "uri": "doi:example/4",
+   "quality": 0.8,
+   "cluster": "D4"
+  },
+  "target": "H17|C",
+  "sig": "placeholder"
+ },
+ {
+  "id": "d5",
+  "op": "replicate",
+  "claim": "H17|C",
+  "scope": "C",
+  "agent": "lab_E",
+  "t": 5,
+  "evidence": {
+   "uri": "doi:example/5",
+   "quality": 0.9,
+   "cluster": "D5"
+  },
+  "target": null,
+  "sig": "placeholder"
+ },
+ {
+  "id": "d6",
+  "op": "replicate",
+  "claim": "H17|C",
+  "scope": "C",
+  "agent": "lab_F",
+  "t": 6,
+  "evidence": {
+   "uri": "doi:example/6",
+   "quality": 0.9,
+   "cluster": "D6"
+  },
+  "target": null,
+  "sig": "placeholder"
+ },
+ {
+  "id": "d7",
+  "op": "weaken",
+  "claim": "H17",
+  "scope": "notC",
+  "agent": "lab_G",
+  "t": 7,
+  "evidence": {
+   "uri": "doi:example/7",
+   "quality": 0.8,
+   "cluster": "D1"
+  },
+  "target": null,
+  "sig": "placeholder"
+ },
+ {
+  "id": "d8",
+  "op": "retract",
+  "claim": "H17",
+  "scope": "C",
+  "agent": "lab_B",
+  "t": 8,
+  "evidence": {},
+  "target": "d2",
+  "sig": "placeholder"
+ }
+]

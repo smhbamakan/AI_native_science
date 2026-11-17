@@ -1,0 +1,35 @@
+{
+ "spearman_D_z": 0.03665692620609294,
+ "spearman_D_n": -0.9545814031896693,
+ "auc_fail_negS_S": 0.5654794686814896,
+ "auc_fail_negS_F": 0.560748124378902,
+ "auc_D_within_z_quartiles": [
+  0.529,
+  0.486,
+  0.519,
+  0.616
+ ],
+ "auc_negn_within_z_quartiles": [
+  0.49,
+  0.49,
+  0.522,
+  0.618
+ ],
+ "share_p_reported_as_bound": 0.49306839186691315,
+ "share_p_equal_0.001": 0.23475046210720887,
+ "distinct_z_values_in_HP3": 255,
+ "rows_HP3": 1628,
+ "auc_success_n_r": 0.46366674484052534,
+ "auc_success_ratio_nr_no": 0.39998948032821374,
+ "logit_in_sample_auc": 0.5620536628661159,
+ "logit_coefs_logz_logn": [
+  [
+   -0.188,
+   -0.109
+  ]
+ ],
+ "logit_groupcv_auc_rerun": 0.4976749125721612,
+ "HP1_CI_width": 0.658848617907547,
+ "HP1_min_detectable_diff_approx": 0.42,
+ "note": "max over three correlated baselines inside each resample biases the baseline upward (conservative test)"
+}

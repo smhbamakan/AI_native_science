@@ -1,0 +1,290 @@
+{
+ "C-DOC": {
+  "name": "Document-centric",
+  "type": "Confirmatory",
+  "seeds": "1000-1029",
+  "condition": "DOC"
+ },
+ "C-NA0": {
+  "name": "KDP, no absorption, no gate",
+  "type": "Confirmatory",
+  "seeds": "1000-1029",
+  "condition": "NA0"
+ },
+ "C-NA2": {
+  "name": "KDP, no absorption",
+  "type": "Confirmatory",
+  "seeds": "1000-1029",
+  "condition": "NA2"
+ },
+ "C-EAG": {
+  "name": "KDP, eager import",
+  "type": "Confirmatory",
+  "seeds": "1000-1029",
+  "condition": "EAG"
+ },
+ "C-FIX": {
+  "name": "KDP, fixed absorption (a₀ = 0.5)",
+  "type": "Confirmatory",
+  "seeds": "1000-1029",
+  "condition": "FIX"
+ },
+ "C-ADA": {
+  "name": "KDP, adaptive absorption (default α)",
+  "type": "Confirmatory",
+  "seeds": "1000-1029",
+  "condition": "ADA"
+ },
+ "R-DOCM": {
+  "name": "Document plus meta-analysis",
+  "type": "Revision baseline",
+  "seeds": "1000-1029",
+  "condition": "DOCM"
+ },
+ "R-DOCR": {
+  "name": "Document plus meta-analysis and replication",
+  "type": "Revision baseline",
+  "seeds": "1000-1029",
+  "condition": "DOCR"
+ },
+ "X-01": {
+  "name": "ADA, random start (absorbed evidence and attractor kept)",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E2:ADA-attractor-only(random init)"
+ },
+ "X-02": {
+  "name": "ADA, no historical attractor (c₃ = 0)",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E2:ADA-no-attractor(phi3=0)"
+ },
+ "X-03": {
+  "name": "NA2, started at legacy records",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E2:NA2-legacy-init-only"
+ },
+ "X-04": {
+  "name": "FIX, a₀ = 0.1",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:FIX a0=0.1"
+ },
+ "X-05": {
+  "name": "FIX, a₀ = 0.25",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:FIX a0=0.25"
+ },
+ "X-06": {
+  "name": "FIX, a₀ = 0.75",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:FIX a0=0.75"
+ },
+ "X-07": {
+  "name": "FIX, a₀ = 1.0",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:FIX a0=1.0"
+ },
+ "X-08": {
+  "name": "ADA, k = 0.1",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:k=0.1"
+ },
+ "X-09": {
+  "name": "ADA, k = 0.5",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:k=0.5"
+ },
+ "X-10": {
+  "name": "ADA, η = 1.0",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:kappa=1.0"
+ },
+ "X-11": {
+  "name": "ADA, η = 10.0",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:kappa=10.0"
+ },
+ "X-12": {
+  "name": "ADA, γ = L1",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:layer=L1"
+ },
+ "X-13": {
+  "name": "ADA, τ = 10.0",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:tau=10.0"
+ },
+ "X-14": {
+  "name": "ADA, τ = 100.0",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:tau=100.0"
+ },
+ "X-15": {
+  "name": "ADA, τ = 25.0",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:tau=25.0"
+ },
+ "X-16": {
+  "name": "ADA, τ = ∞",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:tau=inf"
+ },
+ "X-17": {
+  "name": "ADA, θ = 1",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:theta=1"
+ },
+ "X-18": {
+  "name": "ADA, θ = 4",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E3:theta=4"
+ },
+ "X-19": {
+  "name": "ADA τ_mem=10.0",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E4:ADA tau_mem=10.0"
+ },
+ "X-20": {
+  "name": "ADA τ_mem=25.0",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E4:ADA tau_mem=25.0"
+ },
+ "X-21": {
+  "name": "ADA τ_mem=50.0",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E4:ADA tau_mem=50.0"
+ },
+ "X-22": {
+  "name": "NA2 τ_mem=10.0",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E4:NA2 tau_mem=10.0"
+ },
+ "X-23": {
+  "name": "NA2 τ_mem=25.0",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E4:NA2 tau_mem=25.0"
+ },
+ "X-24": {
+  "name": "NA2 τ_mem=50.0",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E4:NA2 tau_mem=50.0"
+ },
+ "X-25": {
+  "name": "ADA global balanced",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E5:ADA global balanced"
+ },
+ "X-26": {
+  "name": "ADA global follower",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E5:ADA global follower"
+ },
+ "X-27": {
+  "name": "ADA global maverick",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E5:ADA global maverick"
+ },
+ "X-28": {
+  "name": "ADA ring balanced",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E5:ADA ring balanced"
+ },
+ "X-29": {
+  "name": "ADA ring follower",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E5:ADA ring follower"
+ },
+ "X-30": {
+  "name": "ADA ring maverick",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E5:ADA ring maverick"
+ },
+ "X-31": {
+  "name": "NA2 global balanced",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E5:NA2 global balanced"
+ },
+ "X-32": {
+  "name": "NA2 global follower",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E5:NA2 global follower"
+ },
+ "X-33": {
+  "name": "NA2 global maverick",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E5:NA2 global maverick"
+ },
+ "X-34": {
+  "name": "NA2 ring balanced",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E5:NA2 ring balanced"
+ },
+ "X-35": {
+  "name": "NA2 ring follower",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E5:NA2 ring follower"
+ },
+ "X-36": {
+  "name": "NA2 ring maverick",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E5:NA2 ring maverick"
+ },
+ "X6-01": {
+  "name": "trigger ADA",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E6:trigger ADA"
+ },
+ "X6-02": {
+  "name": "trigger NA2",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E6:trigger NA2"
+ },
+ "X6-03": {
+  "name": "trigger + τ_mem25 ADA",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E6:trigger+tau_mem25 ADA"
+ },
+ "X6-04": {
+  "name": "trigger + τ_mem25 NA2",
+  "type": "Exploratory",
+  "seeds": "1000-1029",
+  "tag": "E6:trigger+tau_mem25 NA2"
+ }
+}

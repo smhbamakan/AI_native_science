@@ -1,0 +1,150 @@
+== Confirmatory, paired re-analysis
+H1 mean diff -0.018 [-0.069, 0.033] | prereg one-sided rank-sum p=0.171 | paired two-sided signed-rank p=0.866 W=13
+H2a mean diff -0.010 [-0.073, 0.055] | prereg one-sided rank-sum p=0.093 | paired two-sided signed-rank p=0.626 W=208
+H2c_FIX mean diff 0.007 [-0.005, 0.023] | prereg one-sided rank-sum p=0.553 | paired two-sided signed-rank p=0.455 W=94
+H2c_EAG mean diff 0.005 [-0.023, 0.034] | prereg one-sided rank-sum p=0.468 | paired two-sided signed-rank p=0.587 W=131
+H1 false canon {'NA2': (2, 30, 0.008178134460656307, 0.22073540152296187), 'NA0': (2, 30, 0.008178134460656307, 0.22073540152296187)}
+H2b false canon {'ADA': (4, 30, 0.037553496338363315, 0.30721835027612676), 'EAG': (3, 30, 0.02111713702972257, 0.2652884504742081)}
+H3 median AUC 0.900 [0.871, 0.947] share>0.7 0.9333333333333333
+H4 kdp 0.329 [0.031, 0.523] att -0.085 [-0.173, 0.003] diff 0.394 [0.126, 0.588] p1=8.59e-04 p2=1.72e-03 W=85
+Holm-adjusted: {'H4': np.float64(0.006), 'H2a': 0.555, 'H1': 0.853, 'H2c_EAG': 1, 'H2c_FIX': 1, 'H1_fc': 1, 'H2b': 1}
+
+== Factorial (final regret)
+stationary {'random|none': '0.029 [0.000, 0.066]', 'legacy|none': '0.170 [0.094, 0.257]', 'random|adaptive': '0.072 [0.031, 0.118]', 'legacy|adaptive': '0.108 [0.058, 0.161]', 'interaction': '-0.105 [-0.176, -0.038]', 'init_effect_none': '0.141 [0.058, 0.234]', 'abs_effect_random': '0.043 [-0.005, 0.094]', 'abs_effect_legacy': '-0.062 [-0.118, -0.017]', 'p_init_none': np.float64(0.011), 'p_abs_random': np.float64(0.1614), 'p_abs_legacy': np.float64(0.028)}
+shift {'random|none': '0.510 [0.474, 0.541]', 'legacy|none': '0.463 [0.406, 0.522]', 'random|adaptive': '0.443 [0.386, 0.496]', 'legacy|adaptive': '0.447 [0.399, 0.494]', 'interaction': '0.051 [-0.034, 0.137]', 'init_effect_none': '-0.047 [-0.111, 0.020]', 'abs_effect_random': '-0.067 [-0.133, -0.005]', 'abs_effect_legacy': '-0.016 [-0.071, 0.030]', 'p_init_none': np.float64(0.1024), 'p_abs_random': np.float64(0.033), 'p_abs_legacy': np.float64(0.6121)}
+
+== Matched baselines
+stationary DOC                regret 0.234 [0.143, 0.334] | false (6, 30) | err 0.263 [0.236, 0.291]
+stationary DOCM               regret 0.187 [0.104, 0.285] | false (4, 30) | err 0.266 [0.238, 0.295]
+stationary DOCR               regret 0.213 [0.123, 0.316] | false (5, 30) | err 0.271 [0.245, 0.297]
+stationary NA2 legacy start   regret 0.170 [0.095, 0.259] | false (5, 30) | err 0.054 [0.049, 0.059]
+stationary NA2                regret 0.029 [0.000, 0.066] | false (2, 30) | err 0.057 [0.054, 0.059]
+stationary ADA                regret 0.108 [0.058, 0.162] | false (4, 30) | err 0.063 [0.057, 0.070]
+stationary DOCR_vs_NA2legacy -0.043 [-0.128, 0.022] p=0.4631
+shift DOC                regret 0.472 [0.406, 0.540] | false (19, 30) | err 0.365 [0.350, 0.378]
+shift DOCM               regret 0.479 [0.413, 0.546] | false (20, 30) | err 0.370 [0.358, 0.381]
+shift DOCR               regret 0.481 [0.417, 0.547] | false (20, 30) | err 0.381 [0.371, 0.392]
+shift NA2 legacy start   regret 0.463 [0.406, 0.522] | false (20, 30) | err 0.103 [0.086, 0.121]
+shift NA2                regret 0.510 [0.474, 0.542] | false (29, 30) | err 0.087 [0.080, 0.093]
+shift ADA                regret 0.447 [0.399, 0.494] | false (21, 30) | err 0.118 [0.100, 0.135]
+shift DOCR_vs_NA2legacy -0.018 [-0.051, 0.010] p=0.2626
+
+== Legacy bias
+{'pub_threshold': 0.3} {'DOC': (0.232, 6), 'DOCR': (0.104, 2), 'NA2': (0.029, 2), 'EAG': (0.059, 2), 'ADA': (0.129, 4), 'NA2 legacy start': (0.179, 5)}
+{'pub_threshold': 0.7} {'DOC': (0.239, 7), 'DOCR': (0.261, 9), 'NA2': (0.029, 2), 'EAG': (0.129, 4), 'ADA': (0.144, 4), 'NA2 legacy start': (0.152, 5)}
+{'p_flaw': 0.1} {'DOC': (0.211, 6), 'DOCR': (0.177, 4), 'NA2': (0.051, 2), 'EAG': (0.109, 3), 'ADA': (0.117, 4), 'NA2 legacy start': (0.147, 5)}
+{'p_flaw': 0.5} {'DOC': (0.295, 10), 'DOCR': (0.26, 7), 'NA2': (0.047, 2), 'EAG': (0.108, 3), 'ADA': (0.136, 5), 'NA2 legacy start': (0.215, 6)}
+
+== H3 extended (median AUC / median AP)
+ADA stationary prev {'L1': [10.5, 45.0, 0], 'L2': [7.5, 25.0, 0]}
+    L1|lens divergence                 AUC 0.900 [0.871, 0.947] AP 0.661 [0.585, 0.765]
+    L2|lens divergence                 AUC 0.797 [0.701, 0.854] AP 0.506 [0.436, 0.717]
+    L1|all-evidence estimate           AUC 0.732 [0.560, 0.807] AP 0.395 [0.186, 0.502]
+    L2|all-evidence estimate           AUC 0.192 [0.151, 0.230] AP 0.203 [0.163, 0.242]
+    L1|maximum report                  AUC 0.692 [0.474, 0.761] AP 0.382 [0.168, 0.455]
+    L2|maximum report                  AUC 0.299 [0.138, 0.345] AP 0.229 [0.182, 0.262]
+    L1|few independent agents          AUC 0.531 [0.420, 0.854] AP 0.353 [0.278, 0.437]
+    L2|few independent agents          AUC 0.795 [0.716, 0.886] AP 0.583 [0.536, 0.729]
+    L1|observation variance            AUC 0.538 [0.233, 0.615] AP 0.323 [0.175, 0.446]
+    L2|observation variance            AUC 0.460 [0.193, 0.508] AP 0.362 [0.219, 0.483]
+NA2 stationary prev {'L1': [10.0, 167.5, 1], 'L2': [6.0, 30.0, 3]}
+    L1|lens divergence                 AUC 0.948 [0.915, 0.965] AP 0.724 [0.464, 0.839]
+    L2|lens divergence                 AUC 0.728 [0.691, 0.787] AP 0.417 [0.333, 0.468]
+    L1|all-evidence estimate           AUC 0.925 [0.901, 0.941] AP 0.410 [0.187, 0.513]
+    L2|all-evidence estimate           AUC 0.284 [0.222, 0.409] AP 0.176 [0.125, 0.255]
+    L1|maximum report                  AUC 0.907 [0.871, 0.931] AP 0.264 [0.192, 0.609]
+    L2|maximum report                  AUC 0.370 [0.303, 0.429] AP 0.216 [0.159, 0.252]
+    L1|few independent agents          AUC 0.438 [0.244, 0.522] AP 0.073 [0.035, 0.085]
+    L2|few independent agents          AUC 0.840 [0.767, 0.875] AP 0.551 [0.506, 0.686]
+    L1|observation variance            AUC 0.747 [0.616, 0.835] AP 0.231 [0.130, 0.457]
+    L2|observation variance            AUC 0.438 [0.318, 0.713] AP 0.391 [0.299, 0.500]
+EAG stationary prev {'L1': [8.0, 45.0, 2], 'L2': [4.5, 21.5, 5]}
+    L1|lens divergence                 AUC 0.789 [0.608, 0.829] AP 0.491 [0.213, 0.621]
+    L2|lens divergence                 AUC 0.567 [0.376, 0.663] AP 0.237 [0.210, 0.351]
+    L1|all-evidence estimate           AUC 0.769 [0.644, 0.846] AP 0.327 [0.099, 0.475]
+    L2|all-evidence estimate           AUC 0.190 [0.118, 0.275] AP 0.155 [0.120, 0.220]
+    L1|maximum report                  AUC 0.807 [0.743, 0.848] AP 0.336 [0.175, 0.481]
+    L2|maximum report                  AUC 0.435 [0.329, 0.531] AP 0.223 [0.176, 0.265]
+    L1|few independent agents          AUC 0.335 [0.247, 0.492] AP 0.119 [0.081, 0.147]
+    L2|few independent agents          AUC 0.727 [0.631, 0.767] AP 0.383 [0.269, 0.451]
+    L1|observation variance            AUC 0.845 [0.745, 0.924] AP 0.486 [0.357, 0.595]
+    L2|observation variance            AUC 0.762 [0.646, 0.848] AP 0.570 [0.423, 0.724]
+ADA shift prev {'L1': [17.5, 45.0, 0], 'L2': [13.5, 24.5, 0]}
+    L1|lens divergence                 AUC 0.794 [0.768, 0.851] AP 0.752 [0.683, 0.803]
+    L2|lens divergence                 AUC 0.489 [0.395, 0.603] AP 0.574 [0.498, 0.617]
+    L1|all-evidence estimate           AUC 0.882 [0.840, 0.929] AP 0.786 [0.686, 0.901]
+    L2|all-evidence estimate           AUC 0.259 [0.223, 0.327] AP 0.457 [0.339, 0.566]
+    L1|maximum report                  AUC 0.872 [0.804, 0.893] AP 0.782 [0.615, 0.903]
+    L2|maximum report                  AUC 0.347 [0.285, 0.440] AP 0.494 [0.376, 0.592]
+    L1|few independent agents          AUC 0.313 [0.223, 0.401] AP 0.402 [0.323, 0.429]
+    L2|few independent agents          AUC 0.674 [0.587, 0.753] AP 0.675 [0.595, 0.740]
+    L1|observation variance            AUC 0.683 [0.613, 0.738] AP 0.666 [0.478, 0.767]
+    L2|observation variance            AUC 0.450 [0.403, 0.521] AP 0.582 [0.490, 0.632]
+NA2 shift prev {'L1': [18.0, 168.5, 0], 'L2': [13.0, 28.0, 0]}
+    L1|lens divergence                 AUC 0.890 [0.869, 0.913] AP 0.665 [0.605, 0.720]
+    L2|lens divergence                 AUC 0.504 [0.398, 0.568] AP 0.448 [0.418, 0.535]
+    L1|all-evidence estimate           AUC 0.971 [0.964, 0.981] AP 0.787 [0.732, 0.872]
+    L2|all-evidence estimate           AUC 0.328 [0.289, 0.423] AP 0.409 [0.358, 0.424]
+    L1|maximum report                  AUC 0.963 [0.944, 0.973] AP 0.787 [0.652, 0.871]
+    L2|maximum report                  AUC 0.394 [0.345, 0.465] AP 0.409 [0.367, 0.475]
+    L1|few independent agents          AUC 0.157 [0.105, 0.212] AP 0.078 [0.063, 0.103]
+    L2|few independent agents          AUC 0.572 [0.472, 0.607] AP 0.526 [0.473, 0.591]
+    L1|observation variance            AUC 0.858 [0.809, 0.888] AP 0.471 [0.267, 0.525]
+    L2|observation variance            AUC 0.479 [0.407, 0.575] AP 0.486 [0.450, 0.542]
+
+== H4 extended (median Spearman with true utility)
+ADA stationary MC stability K=0.892 U=0.904 |rho diff| median=0.056  t_run=0.20s t_shapley=0.16s
+    U_err|KDP credit (L1)              0.329 [0.031, 0.523]
+    U_err|KDP credit (L2)              0.281 [-0.122, 0.441]
+    U_err|attention                    -0.085 [-0.173, 0.003]
+    U_err|cumulative uses              0.063 [0.014, 0.136]
+    U_err|claims explored              0.340 [0.259, 0.510]
+    U_err|replications                 0.108 [0.040, 0.189]
+    U_disc|KDP credit (L1)             0.048 [-0.178, 0.085]
+    U_disc|KDP credit (L2)             -0.014 [-0.272, 0.121]
+    U_disc|attention                   0.037 [-0.037, 0.090]
+    U_disc|cumulative uses             0.068 [-0.007, 0.101]
+    U_disc|claims explored             -0.034 [-0.159, 0.046]
+    U_disc|replications                -0.027 [-0.081, 0.034]
+    U_werr|KDP credit (L1)             0.515 [0.277, 0.608]
+    U_werr|KDP credit (L2)             0.412 [0.223, 0.579]
+    U_werr|attention                   -0.123 [-0.158, 0.025]
+    U_werr|cumulative uses             0.073 [-0.004, 0.172]
+    U_werr|claims explored             0.355 [0.260, 0.518]
+    U_werr|replications                0.092 [0.026, 0.169]
+NA2 stationary MC stability K=0.910 U=0.941 |rho diff| median=0.029  t_run=0.10s t_shapley=0.14s
+    U_err|KDP credit (L1)              0.363 [0.282, 0.469]
+    U_err|KDP credit (L2)              0.174 [0.071, 0.259]
+    U_err|attention                    -0.078 [-0.192, -0.010]
+    U_err|cumulative uses              -0.179 [-0.253, -0.149]
+    U_err|claims explored              0.385 [0.278, 0.440]
+    U_err|replications                 0.016 [-0.052, 0.105]
+    U_disc|KDP credit (L1)             0.008 [-0.049, 0.096]
+    U_disc|KDP credit (L2)             -0.011 [-0.103, 0.045]
+    U_disc|attention                   0.025 [-0.071, 0.097]
+    U_disc|cumulative uses             -0.011 [-0.085, 0.079]
+    U_disc|claims explored             -0.053 [-0.136, 0.025]
+    U_disc|replications                0.032 [-0.072, 0.067]
+    U_werr|KDP credit (L1)             0.398 [0.317, 0.473]
+    U_werr|KDP credit (L2)             0.401 [0.310, 0.455]
+    U_werr|attention                   -0.017 [-0.077, 0.066]
+    U_werr|cumulative uses             -0.077 [-0.177, 0.028]
+    U_werr|claims explored             0.363 [0.275, 0.407]
+    U_werr|replications                0.008 [-0.043, 0.087]
+EAG stationary MC stability K=0.919 U=0.926 |rho diff| median=0.037  t_run=0.10s t_shapley=0.14s
+    U_err|KDP credit (L1)              0.376 [0.329, 0.482]
+    U_err|KDP credit (L2)              0.297 [0.153, 0.421]
+    U_err|attention                    -0.020 [-0.072, 0.050]
+    U_err|cumulative uses              0.098 [-0.068, 0.148]
+    U_err|claims explored              0.405 [0.283, 0.522]
+    U_err|replications                 0.023 [-0.068, 0.117]
+    U_disc|KDP credit (L1)             0.044 [-0.026, 0.134]
+    U_disc|KDP credit (L2)             0.013 [-0.019, 0.097]
+    U_disc|attention                   0.012 [-0.044, 0.096]
+    U_disc|cumulative uses             0.060 [-0.030, 0.137]
+    U_disc|claims explored             -0.059 [-0.158, 0.037]
+    U_disc|replications                -0.048 [-0.114, 0.061]
+    U_werr|KDP credit (L1)             0.539 [0.489, 0.658]
+    U_werr|KDP credit (L2)             0.510 [0.402, 0.639]
+    U_werr|attention                   -0.040 [-0.107, 0.010]
+    U_werr|cumulative uses             0.065 [-0.043, 0.099]

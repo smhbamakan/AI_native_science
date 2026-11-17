@@ -1,0 +1,21 @@
+condition summary (mean ± sd; false canonisation count /30)
+stationary DOC: final 0.234±0.268 | false  6 | early 0.267 | post-shift 0.238 | err 0.263 | artifact canon 4
+stationary NA0: final 0.047±0.106 | false  2 | early 0.127 | post-shift 0.047 | err 0.057 | artifact canon 0
+stationary NA2: final 0.029±0.090 | false  2 | early 0.149 | post-shift 0.029 | err 0.057 | artifact canon 0
+stationary EAG: final 0.093±0.143 | false  3 | early 0.123 | post-shift 0.093 | err 0.097 | artifact canon 0
+stationary FIX: final 0.118±0.147 | false  3 | early 0.140 | post-shift 0.118 | err 0.061 | artifact canon 0
+stationary ADA: final 0.108±0.145 | false  4 | early 0.139 | post-shift 0.108 | err 0.063 | artifact canon 0
+shift      DOC: final 0.472±0.189 | false 19 | early 0.267 | post-shift 0.474 | err 0.365 | artifact canon 4
+shift      NA0: final 0.499±0.109 | false 27 | early 0.127 | post-shift 0.506 | err 0.082 | artifact canon 0
+shift      NA2: final 0.510±0.094 | false 29 | early 0.149 | post-shift 0.519 | err 0.087 | artifact canon 0
+shift      EAG: final 0.428±0.138 | false 19 | early 0.123 | post-shift 0.447 | err 0.158 | artifact canon 0
+shift      FIX: final 0.439±0.139 | false 20 | early 0.140 | post-shift 0.446 | err 0.120 | artifact canon 0
+shift      ADA: final 0.447±0.132 | false 21 | early 0.139 | post-shift 0.452 | err 0.118 | artifact canon 0
+
+H1 NA2 vs NA0 (stationary): regret p=0.1706, false-canon Fisher p=0.6940
+H1 NA2 vs NA0 (shift):      regret p=0.5791, false-canon Fisher p=0.9438
+H2a ADA vs NA2 early regret (stationary) p=0.0925
+H2b ADA vs EAG false canon (stationary) Fisher p=0.7881 ; regret p=0.6542
+H2c shift post-shift regret ADA vs FIX p=0.5529 ; ADA vs EAG p=0.4676
+H3 AUC median 0.900 IQR [0.861, 0.968] n=30
+H4 Spearman with true contribution: KDP credit median 0.329, attention median -0.085; Wilcoxon p=8.59e-04
