@@ -36,7 +36,7 @@ python3 test_equations.py
 python3 run_main.py && python3 test_regression.py
 python3 run_explore.py && python3 run_e6.py && python3 revision_analyses.py
 python3 analyze.py && python3 revision_stats.py && python3 explore_paired.py && python3 power.py
-python3 make_figures.py && python3 export_csv.py
+python3 make_figure1.py && python3 make_figures.py && python3 export_csv.py
 python3 run_stress.py        # stress tests added in revision (claim-identity errors, concealed dependence)
 ```
 

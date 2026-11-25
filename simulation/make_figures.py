@@ -8,9 +8,10 @@ from matplotlib.lines import Line2D
 INK, INK2, GRID = "#0b0b0b", "#52514e", "#dcdbd6"
 BLUE, ORANGE, AQUA, YELLOW = "#2a78d6", "#eb6834", "#1baf7a", "#eda100"
 BASE = "#8a8984"
-plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 8.5, "axes.edgecolor": INK2, "axes.labelcolor": INK,
+plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9.5, "axes.edgecolor": INK2, "axes.labelcolor": INK,
                      "xtick.color": INK2, "ytick.color": INK2, "axes.linewidth": 0.8, "figure.facecolor": "white",
-                     "axes.titlesize": 9.5, "xtick.labelsize": 8, "ytick.labelsize": 8})
+                     "axes.titlesize": 10.5, "xtick.labelsize": 9, "ytick.labelsize": 9, "legend.fontsize": 9})
+W_IN = 7.0   # figures are drawn at (close to) their printed width, so font sizes are the printed sizes
 M = pickle.load(open("main_results.pkl", "rb")); E = pickle.load(open("explore_results.pkl", "rb"))
 E6 = pickle.load(open("e6_results.pkl", "rb")); R = pickle.load(open("revision_results.pkl", "rb"))
 S, H = "stationary", "shift"
@@ -28,7 +29,7 @@ def band(ax, rows, color, label, ls="-", dy=0.0):
     m = Y.mean(0); se = Y.std(0, ddof=1) / np.sqrt(len(Y))
     ax.fill_between(t, m - 1.96 * se, m + 1.96 * se, color=color, alpha=0.15, lw=0)
     ax.plot(t, m, color=color, lw=1.8, ls=ls)
-    ax.text(t[-1] + 3, m[-1] + dy, label, color=INK, va="center", fontsize=8)
+    ax.text(t[-1] + 3, m[-1] + dy, label, color=INK, va="center", fontsize=9)
 
 
 def boot_med(x, B=4000):
@@ -43,30 +44,30 @@ def mci(x):
 fr = lambda rows: np.array([r["final_regret"] for r in rows], float)
 
 # ================================================================ Figure 2 (confirmatory)
-fig, axs = plt.subplots(2, 2, figsize=(9.2, 6.6), gridspec_kw={"hspace": 0.62, "wspace": 0.95})
+fig, axs = plt.subplots(2, 2, figsize=(W_IN, 7.6), gridspec_kw={"hspace": 0.55, "wspace": 1.05})
 a, b, c, d = axs.ravel()
-band(a, M[(S, "DOC")], BASE, "Document-centric", "--")
+band(a, M[(S, "DOC")], BASE, "Document-based", "--")
 band(a, M[(S, "EAG")], ORANGE, "KDP, eager import", dy=-0.014)
 band(a, M[(S, "ADA")], AQUA, "KDP, adaptive\nabsorption", dy=0.028)
 band(a, M[(S, "NA2")], BLUE, "KDP, no absorption", dy=-0.012)
-a.set_xlim(0, 150); a.set_ylim(0, 0.45); a.set_xlabel("Iteration of KDP phase"); a.set_ylabel("Regret of canonized claim")
-clean(a, "A  Stationary world (n = 30 per condition)")
+a.set_xlim(0, 150); a.set_ylim(0, 0.45); a.set_xlabel("Iteration of KDP phase"); a.set_ylabel("Regret of accepted claim")
+clean(a, "A  Stationary world")
 
-band(b, M[(H, "DOC")], BASE, "Document-centric", "--")
+band(b, M[(H, "DOC")], BASE, "Document-based", "--")
 band(b, M[(H, "NA2")], BLUE, "KDP, no absorption", dy=0.05)
 band(b, M[(H, "ADA")], AQUA, "KDP, adaptive\nabsorption", dy=-0.06)
 band(b, E6[(H, "E6:trigger+tau_mem25 NA2")], YELLOW, "No absorption, memory\ndecay and anomaly trigger", dy=-0.09)
-b.axvline(75, color=INK2, lw=0.8, ls=":"); b.text(76.5, 0.03, "peak moves", color=INK2, fontsize=8)
-b.set_xlim(0, 150); b.set_ylim(0, 0.75); b.set_xlabel("Iteration of KDP phase"); b.set_ylabel("Regret of canonized claim")
-clean(b, "B  Paradigm-shift world (n = 30 per condition)")
+b.axvline(75, color=INK2, lw=0.8, ls=":"); b.text(76.5, 0.03, "peak moves", color=INK2, fontsize=9)
+b.set_xlim(0, 150); b.set_ylim(0, 0.75); b.set_xlabel("Iteration of KDP phase"); b.set_ylabel("Regret of accepted claim")
+clean(b, "B  Paradigm-shift world")
 
 auc = np.array([r["auc"] for r in M[(S, "ADA")]], float); auc = auc[np.isfinite(auc)]
 c.scatter(rng.uniform(-0.12, 0.12, len(auc)), auc, s=16, color=BLUE, edgecolor="white", lw=0.6, zorder=3)
 c.hlines(np.median(auc), -0.25, 0.25, color=INK, lw=1.5)
-c.axhline(0.70, color=INK2, lw=0.8, ls="--"); c.text(0.32, 0.70, "pre-registered\nthreshold", color=INK2, fontsize=8, va="center")
-c.axhline(0.5, color=GRID, lw=0.9); c.text(0.32, 0.5, "chance", color=INK2, fontsize=8, va="center")
-c.text(0.27, np.median(auc) + 0.005, f"median {np.median(auc):.2f}", fontsize=8, color=INK, va="bottom")
-c.set_xlim(-0.4, 1.0); c.set_xticks([]); c.set_ylim(0.4, 1.02); c.set_ylabel("AUC for over-stated claims")
+c.axhline(0.70, color=INK2, lw=0.8, ls="--"); c.text(0.32, 0.70, "pre-registered\nthreshold", color=INK2, fontsize=9, va="center")
+c.axhline(0.5, color=GRID, lw=0.9); c.text(0.32, 0.5, "chance", color=INK2, fontsize=9, va="center")
+c.text(0.27, np.median(auc) + 0.005, f"median {np.median(auc):.2f}", fontsize=9, color=INK, va="bottom")
+c.set_xlim(-0.4, 1.0); c.set_xticks([]); c.set_ylim(0.4, 1.02); c.set_ylabel("AUC, overstated claims (label A)")
 c.set_xlabel(f"one point per run (n = {len(auc)})")
 clean(c, "C  Lens divergence as an alarm (H3)")
 
@@ -77,7 +78,7 @@ d.scatter(np.zeros(ok.sum()), ra[ok], s=16, color=BASE, edgecolor="white", lw=0.
 d.scatter(np.ones(ok.sum()), rk[ok], s=16, color=BLUE, edgecolor="white", lw=0.6, zorder=3)
 for xx, vv in ((0, ra[ok]), (1, rk[ok])):
     d.hlines(np.median(vv), xx - 0.18, xx + 0.18, color=INK, lw=1.5)
-    d.text(xx + 0.22, np.median(vv), f"{np.median(vv):.2f}", fontsize=8, va="center")
+    d.text(xx + 0.22, np.median(vv), f"{np.median(vv):.2f}", fontsize=9, va="center")
 d.axhline(0, color=INK2, lw=0.6)
 d.set_xticks([0, 1]); d.set_xticklabels(["Attention\n(citation analogue)", "KDP credit\n(Shapley)"])
 d.set_xlim(-0.4, 1.5); d.set_ylabel("Spearman ρ with true contribution")
@@ -85,8 +86,9 @@ clean(d, f"D  Credit validity (H4), n = {ok.sum()} paired runs")
 fig.savefig("fig2_results.png", dpi=300, bbox_inches="tight"); plt.close(fig)
 
 # ================================================================ Figure 3 (mechanisms; exploratory)
-fig, axs = plt.subplots(1, 3, figsize=(10.2, 3.6), gridspec_kw={"wspace": 0.75, "width_ratios": [1.15, 1.2, 1.25]})
-a, b, c = axs
+fig = plt.figure(figsize=(W_IN, 8.4))
+gs = fig.add_gridspec(2, 2, height_ratios=[1, 1.05], hspace=0.75, wspace=0.42)
+a = fig.add_subplot(gs[0, 0]); c = fig.add_subplot(gs[0, 1]); b = fig.add_subplot(gs[1, :])
 # a: 2x2 factorial, interaction plot
 for sc, col, mk, lab in ((S, BLUE, "o", "Stationary"), (H, ORANGE, "D", "Paradigm shift")):
     cells = {("random", "none"): M[(sc, "NA2")], ("legacy", "none"): E[(sc, "E2:NA2-legacy-init-only")],
@@ -100,7 +102,7 @@ a.set_xticks([0, 1]); a.set_xticklabels(["Random\nstart", "Legacy\nstart"]); a.s
 a.set_ylabel("Final regret (mean, 95% CI)"); a.set_ylim(0, 0.62)
 h = [Line2D([], [], color=BLUE, marker="o", lw=0, label="Stationary"), Line2D([], [], color=ORANGE, marker="D", lw=0, label="Paradigm shift"),
      Line2D([], [], color=INK2, ls="--", marker="o", mfc="white", label="No absorption"), Line2D([], [], color=INK2, ls="-", marker="o", label="Adaptive absorption")]
-a.legend(handles=h, frameon=False, fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.24), ncol=2, handletextpad=0.3, columnspacing=0.8)
+a.legend(handles=h, frameon=False, fontsize=8.5, loc="upper center", bbox_to_anchor=(0.5, -0.22), ncol=2, handletextpad=0.3, columnspacing=0.8)
 clean(a, "A  Start × absorption")
 
 base_s = fr(M[(S, "ADA")]).mean(); base_h = fr(M[(H, "ADA")]).mean()
@@ -114,8 +116,8 @@ for i, (lab, tag) in enumerate(sens):
 b.axvline(0, color=INK2, lw=0.8)
 b.set_yticks(range(len(sens))); b.set_yticklabels([s[0] for s in sens]); b.invert_yaxis()
 b.set_xlabel("Change in final regret vs default α")
-b.legend(handles=h[:2], frameon=False, fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=2, handletextpad=0.2)
-clean(b, "B  Sensitivity to α", grid="x")
+b.legend(handles=h[:2], frameon=False, fontsize=9, loc="upper center", bbox_to_anchor=(0.5, -0.14), ncol=2, handletextpad=0.2)
+clean(b, "C  Sensitivity to the absorption profile α", grid="x")
 
 mixes = ["balanced", "maverick", "follower"]
 for j, (topo, col, mk) in enumerate((("global", BLUE, "o"), ("ring", ORANGE, "D"))):
@@ -128,14 +130,15 @@ for j, (topo, col, mk) in enumerate((("global", BLUE, "o"), ("ring", ORANGE, "D"
                    label=("Global network" if topo == "global" else "Ring network") if i == 0 else None)
 c.set_xticks(range(3)); c.set_xticklabels(["Balanced", "Maverick-\nheavy", "Follower-\nheavy"])
 c.set_ylabel("Final regret (stationary)"); c.set_xlim(-0.5, 2.5)
-c.legend(frameon=False, fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.25), ncol=2, handletextpad=0.2)
-clean(c, "C  Social structure (KDP, no absorption)")
+c.legend(frameon=False, fontsize=8.5, loc="upper center", bbox_to_anchor=(0.5, -0.22), ncol=1, handletextpad=0.2)
+clean(c, "B  Social structure (no absorption)")
 fig.savefig("fig3_mechanisms.png", dpi=300, bbox_inches="tight"); plt.close(fig)
 
 # ================================================================ Figure 4 (robustness added in revision)
-fig, axs = plt.subplots(1, 3, figsize=(10.4, 3.7), gridspec_kw={"wspace": 0.85, "width_ratios": [1.25, 1.1, 1.1]})
-a, b, c = axs
-rows = [("Document-centric", M[(S, "DOC")], BASE), ("Doc + meta-analysis", R[("baseline", "DOCM", S, ())], BASE),
+fig = plt.figure(figsize=(W_IN, 8.6))
+gs = fig.add_gridspec(2, 2, height_ratios=[0.9, 1], hspace=0.62, wspace=0.95)
+a = fig.add_subplot(gs[0, :]); b = fig.add_subplot(gs[1, 0]); c = fig.add_subplot(gs[1, 1])
+rows = [("Document-based", M[(S, "DOC")], BASE), ("Doc + meta-analysis", R[("baseline", "DOCM", S, ())], BASE),
         ("Doc + replication", R[("baseline", "DOCR", S, ())], BASE), ("KDP, legacy start", E[(S, "E2:NA2-legacy-init-only")], BLUE),
         ("KDP, adaptive absorption", M[(S, "ADA")], BLUE), ("KDP, random start", M[(S, "NA2")], BLUE)]
 for i, (lab, rr, col) in enumerate(rows):
@@ -145,9 +148,9 @@ for i, (lab, rr, col) in enumerate(rows):
     a.errorbar(me, i + 0.13, xerr=cie, fmt="s", color=col, mfc="white", ms=4.5, lw=1.1, capsize=2)
 a.set_yticks(range(len(rows))); a.set_yticklabels([r[0] for r in rows]); a.invert_yaxis()
 a.set_xlabel("Mean (95% CI), stationary world"); a.set_xlim(0, 0.34)
-a.legend(handles=[Line2D([], [], color=INK2, marker="o", lw=0, label="Regret of canon"),
+a.legend(handles=[Line2D([], [], color=INK2, marker="o", lw=0, label="Regret of accepted claim"),
                   Line2D([], [], color=INK2, marker="s", mfc="white", lw=0, label="Knowledge-state error")],
-         frameon=False, fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=2, handletextpad=0.2)
+         frameon=False, fontsize=9, loc="upper center", bbox_to_anchor=(0.5, -0.25), ncol=2, handletextpad=0.2)
 clean(a, "A  Matched baselines", grid="x")
 
 scores = ["lens divergence", "all-evidence estimate", "maximum report", "few independent agents", "observation variance"]
@@ -159,8 +162,8 @@ for sc, col, mk, off in ((S, BLUE, "o", -0.14), (H, ORANGE, "D", 0.14)):
         b.errorbar(m, i + off, xerr=[[m - lo], [hi - m]], fmt=mk, color=col, ms=5, mec="white", mew=0.6, lw=1.1, capsize=2)
 b.axvline(0.5, color=INK2, lw=0.8, ls=":")
 b.set_yticks(range(len(scores))); b.set_yticklabels(short); b.invert_yaxis(); b.set_xlim(0, 1)
-b.set_xlabel("Median AUC, decoupled label (L2)")
-b.legend(handles=h[:2], frameon=False, fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=2, handletextpad=0.2)
+b.set_xlabel("Median AUC, label B")
+b.legend(handles=h[:2], frameon=False, fontsize=8.5, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=1, handletextpad=0.2)
 clean(b, "B  Alarm vs simple scores", grid="x")
 
 meas = ["KDP credit (L1)", "claims explored", "replications", "cumulative uses", "attention"]
@@ -172,8 +175,8 @@ for sc, col, mk, off in ((S, BLUE, "o", -0.14), (H, ORANGE, "D", 0.14)):
         c.errorbar(m, i + off, xerr=[[m - lo], [hi - m]], fmt=mk, color=col, ms=5, mec="white", mew=0.6, lw=1.1, capsize=2)
 c.axvline(0, color=INK2, lw=0.8, ls=":")
 c.set_yticks(range(len(meas))); c.set_yticklabels(mshort); c.invert_yaxis(); c.set_xlim(-0.75, 0.6)
-c.set_xlabel("Median Spearman ρ with true contribution")
-c.legend(handles=h[:2], frameon=False, fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=2, handletextpad=0.2)
+c.set_xlabel("Median Spearman ρ with\ntrue contribution")
+c.legend(handles=h[:2], frameon=False, fontsize=8.5, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=1, handletextpad=0.2)
 clean(c, "C  Credit vs simple measures", grid="x")
 fig.savefig("fig4_robustness.png", dpi=300, bbox_inches="tight"); plt.close(fig)
 print("ok")
