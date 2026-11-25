@@ -10,3 +10,4 @@ simulation/*.json
 replay/*.json
 replay/v2/*.json
 prototype/kdp_example_log.json
+replay/fred_HP*_rows.csv
