@@ -7,12 +7,12 @@ Code accompanying a manuscript currently under peer review. It is provided so th
 | Folder | Contents |
 |---|---|
 | `prototype/` | Minimal reference implementation of the Knowledge Delta Protocol (transaction schema, two lenses, retraction and qualification semantics, impact and exact Shapley credit) with an example log |
-| `simulation/` | Agent-based simulation (absorptive particle swarm on a synthetic epistemic landscape), run scripts, statistics, figure script and tests |
+| `simulation/` | Agent-based simulation (absorptive particle swarm on a synthetic epistemic landscape), run scripts, statistics, figure script, stress tests and unit tests |
 | `replay/` | Analysis of replication records from the FORRT Replication Database (FReD), stage 1 and stage 2 (`v2/`) |
 
 ## Requirements
 
-Python 3.11 or later.
+Python 3.11 or later (tested with Python 3.13).
 
 ```
 pip install -r requirements.txt pandas pyreadr scikit-learn
@@ -22,7 +22,7 @@ All runs are deterministic given their seeds (1000–1029).
 
 ## Running
 
-Prototype:
+Prototype (regenerates the worked example, Table 5 of the manuscript):
 
 ```
 cd prototype && python3 kdp_prototype.py
@@ -37,7 +37,10 @@ python3 run_main.py && python3 test_regression.py
 python3 run_explore.py && python3 run_e6.py && python3 revision_analyses.py
 python3 analyze.py && python3 revision_stats.py && python3 explore_paired.py && python3 power.py
 python3 make_figures.py && python3 export_csv.py
+python3 run_stress.py        # stress tests added in revision (claim-identity errors, concealed dependence)
 ```
+
+The full simulation pipeline takes about 15 minutes on two CPU cores. Unit tests are named after the equation numbers of the manuscript (equations 4 and 10–13).
 
 `aepso.py` is the simulation; `aepso_v1_frozen.py` is the version used for the confirmatory runs, before exploratory options were added. `test_regression.py` checks that the current code reproduces the confirmatory runs.
 
@@ -46,7 +49,10 @@ Replication-record analysis:
 ```
 cd replay && python3 -I fred_replay.py && python3 -I fred_diag.py && python3 -I fred_design_check.py
 cd v2 && python3 -I dev_explore.py && python3 -I confirm_v2.py holdout
+python3 -I sensitivity_t3.py holdout && python3 -I sensitivity_t3.py development   # post hoc, added in revision
 ```
+
+`sensitivity_t3.py` is not part of the pre-registered analysis: it adds Firth-penalized estimates, report- and paper-clustered intervals, report-weighted estimates and a mixed-as-failure coding for test T3.
 
 `replay/v2/common.py` refuses to load the held-out half unless `PREREG_V2_HASH.txt` is present; that file and `replay/HASHES.txt` record SHA-256 hashes of the analysis plans, code, data split and data snapshot made before the corresponding analyses. The plans themselves are available to the journal on request.
 
