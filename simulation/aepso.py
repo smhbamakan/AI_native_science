@@ -23,6 +23,10 @@ DEFAULT = dict(
     phi3=0.5, topology="global", mix="balanced",
     init="auto", tau_mem=float("inf"),
     trigger=False, trig_frac=0.3, trig_thr=0.2, trig_cool=15,
+    # stress tests (revision): p_alias = probability that an observation is recorded under an unlinked alias
+    # identity of its agent (concealed dependence); p_misid = probability that it is filed under a neighbouring
+    # claim (claim-identity error). Both 0 by default, which leaves all reported results unchanged.
+    p_alias=0.0, p_misid=0.0,
 )
 
 
@@ -200,7 +204,8 @@ def run(cond, scenario, seed, **over):
         x = rng.uniform(size=(n, 2))
     v = rng.uniform(-0.05, 0.05, size=(n, 2))
 
-    kS = np.zeros((NC, n)); kC = np.zeros((NC, n)); kSS = np.zeros(NC); kMax = np.full(NC, -np.inf); nrep = np.zeros(n)
+    ncol = 2 * n if p["p_alias"] > 0 else n          # alias columns hold observations filed under unlinked identities
+    kS = np.zeros((NC, ncol)); kC = np.zeros((NC, ncol)); kSS = np.zeros(NC); kMax = np.full(NC, -np.inf); nrep = np.zeros(n)
     first = np.full(NC, -1)
     attention = np.zeros(n)
     pub_best_y, pub_best_c = (leg["max"].max(), int(np.argmax(leg["max"]))) if len(rec) else (-np.inf, -1)
@@ -250,7 +255,7 @@ def run(cond, scenario, seed, **over):
         hist["a0"].append(np.nanmean(np.where(theta_ok, a0c, np.nan)) if absorb else np.nan)
 
         # ---- attractors
-        visited = kC > 0
+        visited = (kC[:, :n] + kC[:, n:]) > 0 if ncol > n else kC > 0
         Sv = np.where(visited, S[:, None], -np.inf)
         pc = np.argmax(Sv, 0)
         pbx = np.where((visited.any(0))[:, None], CENT[pc], x)
@@ -302,6 +307,15 @@ def run(cond, scenario, seed, **over):
             kS *= dmem; kC *= dmem
         y = world.observe(obs_x, flaw, p)
         cells = cell_of(obs_x)
+        if p["p_misid"] > 0:                    # claim-identity error: filed under a neighbouring claim
+            mis = rng.uniform(size=n) < p["p_misid"]
+            for i in np.where(mis)[0]:
+                r_, c_ = divmod(int(cells[i]), G)
+                dr, dc = [(-1, 0), (1, 0), (0, -1), (0, 1)][rng.integers(4)]
+                cells[i] = min(max(r_ + dr, 0), G - 1) * G + min(max(c_ + dc, 0), G - 1)
+        col_of = np.arange(n)
+        if ncol > n:                            # concealed dependence: same agent, unlinked identity
+            col_of = np.where(rng.uniform(size=n) < p["p_alias"], np.arange(n) + n, col_of)
         if p["trigger"] and not doc and canon >= 0:
             hit = cells == canon
             if hit.any():                       # attestation residuals on the canonised claim
@@ -313,7 +327,7 @@ def run(cond, scenario, seed, **over):
                 hist["triggers"].append(t)
         for i in range(n):
             c = cells[i]
-            kS[c, i] += y[i]; kC[c, i] += 1; kSS[c] += y[i] ** 2; kMax[c] = max(kMax[c], y[i])
+            kS[c, col_of[i]] += y[i]; kC[c, col_of[i]] += 1; kSS[c] += y[i] ** 2; kMax[c] = max(kMax[c], y[i])
             if rep[i]: nrep[i] += 1
             if first[c] < 0:
                 first[c] = i
